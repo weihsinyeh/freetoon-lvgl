@@ -1183,21 +1183,22 @@ lv_obj_t * screen_home_create(void) {
     lv_obj_add_flag(tile_img_drop, LV_OBJ_FLAG_HIDDEN);
 
     /* Live water-flow indicator on the left side of the indoor temp —
-     * mirrors the radiator+flame on the right. Drop icon + "X.X L/m"
-     * label, both hidden until HomeWizard reports flow > 0. */
+     * mirrors the radiator+flame on the right. The 48-pt temp spans
+     * ~150 px, so its left edge sits around x = -75. Icon at -180 and
+     * 14-pt label at -135 keep the indicator clear of the temp glyphs. */
     tile_img_water = lv_img_create(th);
     lv_img_set_src(tile_img_water, &icon_drop);
     lv_img_set_zoom(tile_img_water, 256);
     lv_obj_set_style_img_recolor(tile_img_water, lv_color_hex(0x66bbff), 0);
     lv_obj_set_style_img_recolor_opa(tile_img_water, 255, 0);
-    lv_obj_align(tile_img_water, LV_ALIGN_CENTER, -130, -90);
+    lv_obj_align(tile_img_water, LV_ALIGN_CENTER, -180, -90);
     lv_obj_add_flag(tile_img_water, LV_OBJ_FLAG_HIDDEN);
 
     tile_lbl_water = lv_label_create(th);
     lv_obj_set_style_text_color(tile_lbl_water, lv_color_hex(0x66bbff), 0);
-    lv_obj_set_style_text_font(tile_lbl_water, &lv_font_montserrat_22, 0);
+    lv_obj_set_style_text_font(tile_lbl_water, &lv_font_montserrat_14, 0);
     lv_label_set_text(tile_lbl_water, "");
-    lv_obj_align(tile_lbl_water, LV_ALIGN_CENTER, -100, -75);
+    lv_obj_align(tile_lbl_water, LV_ALIGN_CENTER, -140, -90);
     lv_obj_add_flag(tile_lbl_water, LV_OBJ_FLAG_HIDDEN);
 
     /* --- Waste tile: two stacked pickup rows ---
